@@ -1,4 +1,10 @@
+streamlit
+pandas
+plotly
 nbformat
+matplotlib
+seaborn
+numpy
 requests
 joblib
 python-dotenv
