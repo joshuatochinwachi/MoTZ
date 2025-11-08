@@ -179,8 +179,13 @@ class CacheManager:
             for col in df.columns:
                 if df[col].dtype == 'object':
                     try:
-                        df[col] = pd.to_datetime(df[col], errors='ignore')
-                    except:
+                        # Try converting to datetime, but keep original if it fails
+                        converted = pd.to_datetime(df[col], errors='coerce')
+                        # Only replace if at least some values were successfully converted
+                        if converted.notna().sum() > 0:
+                            df[col] = converted
+                    except Exception as e:
+                        logger.warning(f"Could not convert column {col} to datetime: {e}")
                         pass
             
             # Cache the result
@@ -358,7 +363,10 @@ async def get_dune_data(query_key: str):
                 detail=f"No data available for query '{query_key}'"
             )
         
-        # Convert DataFrame to list of dicts
+        # Convert DataFrame to list of dicts with proper datetime handling
+        # Replace NaT and NaN with None for JSON serialization
+        df = df.replace({pd.NaT: None, pd.NA: None})
+        df = df.where(pd.notna(df), None)
         data = df.to_dict('records')
         
         # Generate metadata
