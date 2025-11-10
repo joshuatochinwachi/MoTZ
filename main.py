@@ -45,7 +45,12 @@ class Config:
             'weekly_user_activation_retention': 6154197,
             'daily_holders': 6152448,
             'current_holders_founders_coin': 6153828,
-            'current_holders_keys': 6153694
+            'current_holders_keys': 6153694,
+            'new_holders_founders_coin_7d': 6182546,
+            'new_holders_keys_7d': 6183240,
+            'sold_transferred_founders_coin_7d': 6183386,
+            'sold_transferred_keys_7d': 6183420,
+            'current_stats_gotcha_machine': 6183986
         }
         
         self.cache_duration = 86400  # 24 hours in seconds
@@ -301,7 +306,12 @@ async def root(request: Request):
                 "weekly_user_activation_retention": "/api/raw/dune/weekly_user_activation_retention",
                 "daily_holders": "/api/raw/dune/daily_holders",
                 "current_holders_founders_coin": "/api/raw/dune/current_holders_founders_coin",
-                "current_holders_keys": "/api/raw/dune/current_holders_keys"
+                "current_holders_keys": "/api/raw/dune/current_holders_keys",
+                "new_holders_founders_coin_7d": "/api/raw/dune/new_holders_founders_coin_7d",
+                "new_holders_keys_7d": "/api/raw/dune/new_holders_keys_7d",
+                "sold_transferred_founders_coin_7d": "/api/raw/dune/sold_transferred_founders_coin_7d",
+                "sold_transferred_keys_7d": "/api/raw/dune/sold_transferred_keys_7d",
+                "current_stats_gotcha_machine": "/api/raw/dune/current_stats_gotcha_machine"
             },
             "utilities": {
                 "cache_status": "/api/cache/status",
@@ -309,7 +319,7 @@ async def root(request: Request):
                 "clear_cache": "/api/cache/clear"
             }
         },
-        "total_data_sources": 9,
+        "total_data_sources": 14,
         "cache_duration": "24 hours",
         "note": "All endpoints return RAW data exactly as received from Dune Analytics"
     }
@@ -345,6 +355,11 @@ async def get_dune_data(query_key: str):
     - daily_holders
     - current_holders_founders_coin
     - current_holders_keys
+    - new_holders_founders_coin_7d
+    - new_holders_keys_7d
+    - sold_transferred_founders_coin_7d
+    - sold_transferred_keys_7d
+    - current_stats_gotcha_machine
     """
     try:
         # Validate query key
@@ -396,7 +411,7 @@ async def get_cache_status():
         status = {
             "cache_directory": cache_manager.cache_dir,
             "cache_duration_hours": 24,
-            "total_sources": 9,
+            "total_sources": 14,
             "sources": {}
         }
         
@@ -484,7 +499,7 @@ async def clear_cache():
 @app.get("/api/bulk/all")
 async def get_all_data():
     """
-    Get all data sources at once (all 9 Dune queries)
+    Get all data sources at once (all 14 Dune queries)
     Useful for dashboard initialization
     """
     try:
