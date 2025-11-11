@@ -1,8 +1,8 @@
 import os
 import requests
 from dotenv import load_dotenv
-from datetime import datetime
-from typing import Optional
+from datetime import datetime, timedelta
+from typing import Optional, Tuple
 
 load_dotenv()
 dune_api_key = os.getenv("DEFI_JOSH_DUNE_QUERY_API_KEY")
@@ -36,9 +36,27 @@ def prompt_date(prompt_text: str, default: Optional[str] = None) -> str:
             print("Invalid date format. Use YYYY-MM-DD.")
 
 
-end_date = prompt_date("Enter end date", default=datetime.utcnow().strftime("%Y-%m-%d"))
+def prompt_date_range() -> Tuple[str, str]:
+    """Prompt for start and end dates, validate format and that start <= end.
+    Returns a tuple (start_date, end_date) as YYYY-MM-DD strings.
+    """
+    default_end = datetime.utcnow().strftime("%Y-%m-%d")
+    default_start = (datetime.utcnow() - timedelta(days=2)).strftime("%Y-%m-%d")
+    while True:
+        start = prompt_date("Enter start date", default=default_start)
+        end = prompt_date("Enter end date", default=default_end)
+        try:
+            dt_start = datetime.strptime(start, "%Y-%m-%d")
+            dt_end = datetime.strptime(end, "%Y-%m-%d")
+        except ValueError:
+            # prompt_date already validates format, but keep this guard
+            print("One of the dates was invalid; please try again.")
+            continue
+        if dt_start <= dt_end:
+            return start, end
+        print("start_date must be on or before end_date. Please enter the dates again.")
 
-start_date = "2025-11-08"
+start_date, end_date = prompt_date_range()
 
 data = {
     "start_date": start_date,
