@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Purple-centric premium design tokens for MoTZ */
+:root {
+  --background: oklch(0.98 0.001 0);
+  --foreground: oklch(0.15 0.01 260);
+  --card: oklch(0.99 0 0);
+  --card-foreground: oklch(0.15 0.01 260);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.15 0.01 260);
+  --primary: oklch(0.52 0.28 280);
+  --primary-foreground: oklch(0.98 0.001 0);
+  --secondary: oklch(0.75 0.15 280);
+  --secondary-foreground: oklch(0.15 0.01 260);
+  --accent: oklch(0.58 0.32 270);
+  --accent-foreground: oklch(0.98 0.001 0);
+  --muted: oklch(0.92 0.02 280);
+  --muted-foreground: oklch(0.5 0.05 260);
+  --border: oklch(0.88 0.03 280);
+  --input: oklch(0.94 0.01 280);
+  --ring: oklch(0.58 0.32 270);
+  --destructive: oklch(0.58 0.28 25);
+  --destructive-foreground: oklch(0.98 0.001 0);
+  --chart-1: oklch(0.58 0.32 270);
+  --chart-2: oklch(0.75 0.15 280);
+  --chart-3: oklch(0.52 0.28 280);
+  --chart-4: oklch(0.65 0.25 265);
+  --chart-5: oklch(0.45 0.25 275);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.12 0.02 260);
+  --foreground: oklch(0.95 0.01 280);
+  --card: oklch(0.18 0.02 260);
+  --card-foreground: oklch(0.95 0.01 280);
+  --popover: oklch(0.18 0.02 260);
+  --popover-foreground: oklch(0.95 0.01 280);
+  --primary: oklch(0.7 0.28 280);
+  --primary-foreground: oklch(0.12 0.02 260);
+  --secondary: oklch(0.85 0.15 280);
+  --secondary-foreground: oklch(0.12 0.02 260);
+  --accent: oklch(0.75 0.32 270);
+  --accent-foreground: oklch(0.12 0.02 260);
+  --muted: oklch(0.28 0.03 260);
+  --muted-foreground: oklch(0.7 0.08 280);
+  --border: oklch(0.25 0.04 260);
+  --input: oklch(0.22 0.03 260);
+  --ring: oklch(0.75 0.32 270);
+  --destructive: oklch(0.68 0.28 25);
+  --destructive-foreground: oklch(0.12 0.02 260);
+  --chart-1: oklch(0.75 0.32 270);
+  --chart-2: oklch(0.85 0.15 280);
+  --chart-3: oklch(0.7 0.28 280);
+  --chart-4: oklch(0.78 0.25 265);
+  --chart-5: oklch(0.65 0.25 275);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    @apply transition-all duration-200 ease-out;
+  }
+}
+
+@layer components {
+  /* Premium metric card styling */
+  .metric-card {
+    @apply bg-gradient-to-br from-card to-card/80 border border-border rounded-lg p-5 transition-all duration-300;
+    @apply hover:border-primary hover:shadow-lg hover:shadow-primary/10;
+    @apply dark:from-card dark:to-card/60 dark:hover:shadow-primary/25;
+  }
+
+  /* Interactive table rows */
+  .interactive-row {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-primary/5 hover:shadow-md;
+    @apply dark:hover:bg-primary/10;
+  }
+
+  /* Badge with interactive state */
+  .badge-interactive {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-primary/10 text-primary border border-primary/20;
+    @apply transition-all duration-200 hover:bg-primary/20 hover:border-primary/40;
+    @apply dark:bg-primary/20 dark:text-primary dark:hover:bg-primary/30;
+  }
+}
+
+/* Background animations for visual interest */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(140, 70, 220, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(140, 70, 220, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(140, 70, 220, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Background pattern with animated gradient */
+.bg-animated {
+  background: linear-gradient(
+    -45deg,
+    hsl(280, 100%, 50%),
+    hsl(270, 100%, 55%),
+    hsl(260, 100%, 50%),
+    hsl(290, 100%, 55%)
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 15s ease infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark .bg-animated {
+  background: linear-gradient(-45deg, hsl(280, 80%, 40%), hsl(270, 80%, 45%), hsl(260, 80%, 40%), hsl(290, 80%, 45%));
+  opacity: 0.08;
+}
+
+/* Hide v0 watermark completely */
+[class*="watermark"],
+[class*="v0-watermark"],
+[class*="v0"],
+[data-v0-watermark],
+a[href*="v0.dev"],
+div[class*="BuiltWith"],
+footer a[href*="v0"],
+div:has(> a[href*="v0.dev"]),
+[aria-label*="Built with"],
+[aria-label*="v0"],
+button[class*="v0"],
+div[style*="position: fixed"][style*="bottom"],
+div[style*="position: fixed"][style*="right"] > a[href*="v0"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+.dark {
+  color-scheme: dark;
+}
