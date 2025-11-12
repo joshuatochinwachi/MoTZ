@@ -70,9 +70,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - NFT gallery view
 - Market sentiment analysis
 - Browser extension
-
----
-
-## Version History
-
-- **v1.0.0** (2025-01-15): Initial public release
